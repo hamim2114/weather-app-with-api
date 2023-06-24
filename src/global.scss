@@ -1,0 +1,14 @@
+$mb-w: 600px;
+$tb-w: 1300px;
+
+@mixin tablet{
+  @media screen and (max-width: $tb-w) {
+    @content;
+  }
+};
+
+@mixin mobile{
+  @media screen and (max-width: $mb-w) {
+    @content;
+  }
+};
