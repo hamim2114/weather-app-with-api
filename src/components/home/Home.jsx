@@ -7,21 +7,20 @@ import { useEffect, useState } from 'react';
 const KEY = '5a44bf47e3b4445faec233126232206';
 
 const Home = () => {
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState('dhaka');
   const [search, setSearch] = useState('');
-  const [searched, setSearched] = useState(false); // Track if search has been performed
-  const [cityFound, setCityFound] = useState(false); // Track if city state is found
+  const [searched, setSearched] = useState(false); 
+  const [cityFound, setCityFound] = useState(false); 
 
   // Get weather data
   const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ['weather-data', city], // Include city as a query key
+    queryKey: ['weather-data', city],
     queryFn: () =>
       axios
         .get(`https://api.weatherapi.com/v1/forecast.json?key=${KEY}&q=${city}&days=5`)
         .then((d) => d.data),
     enabled: searched || cityFound, // Enable the query when search has been performed or city state is found
   });
-  console.log(data)
   // Get local city name with IP
   useEffect(() => {
     const fetchLocation = async () => {
@@ -29,7 +28,7 @@ const Home = () => {
         const response = await fetch('http://ip-api.com/json');
         const data = await response.json();
         setCity(data.city);
-        setCityFound(true); // Mark that city state is found
+        setCityFound(true);
       } catch (error) {
         console.log(error);
       }
@@ -40,7 +39,7 @@ const Home = () => {
 
   const handleSearch = () => {
     setCity(search);
-    setSearched(true); // Mark that the search has been performed
+    setSearched(true);
   };
 
   useEffect(() => {
@@ -49,7 +48,6 @@ const Home = () => {
     }
   }, [city, refetch, searched]);
 
-  // if (isLoading) return <div>loading..</div>;
   return (
     <>
       <div className="home">
