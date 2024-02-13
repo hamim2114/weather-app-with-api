@@ -8,10 +8,6 @@ This is a weather application that provides users with up-to-date weather inform
 
 React, SCSS, React-Query
 
-
-## Link
-
-
 [Live](https://weather-hamim2114.vercel.app/)
 
 
